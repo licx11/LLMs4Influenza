@@ -6,7 +6,6 @@ from torch.utils.checkpoint import checkpoint
 
 from transformers import LlamaForCausalLM, LlamaModel, BitsAndBytesConfig
 from einops import rearrange
-from embed import DataEmbedding, DataEmbedding_wo_time
 
 
 class Llama2(nn.Module):

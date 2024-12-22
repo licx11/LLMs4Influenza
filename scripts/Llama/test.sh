@@ -9,7 +9,6 @@ seq_len=52
 model=Llama2
 
 
-# for seq_len in 104 52
 for llama_layer in $(seq 1 6)
 do
     printf "\nllama_layer: $llama_layer\n"

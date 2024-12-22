@@ -1,7 +1,3 @@
-#  nohup bash ./scripts/Llama/flucdc_south.sh > ./Output/SouthChinaFlu/Llama2_relu_lr4_predlen8.log 2>&1 &
-
-#  nohup bash ./scripts/Llama/flucdc_south.sh > ./Output/SouthChinaFlu/Llama2_test.log 2>&1 &
-
 export CUDA_VISIBLE_DEVICES=0
 
 percent=100
@@ -10,14 +6,11 @@ model=Llama2
 train_epoch=64
 pred_len=8
 
-# for seq_len in 104 52
 for seq_len in 52
 do
 for fix_seed in 2021 2024 42
-# for fix_seed in 2021
 do
 for if_inverse in 0 1
-# for if_inverse in  1
 do
 
 python main.py \

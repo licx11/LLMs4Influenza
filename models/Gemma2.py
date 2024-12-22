@@ -5,7 +5,6 @@ from torch import optim
 
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from einops import rearrange
-from embed import DataEmbedding, DataEmbedding_wo_time
 
 
 class Gemma2(nn.Module):

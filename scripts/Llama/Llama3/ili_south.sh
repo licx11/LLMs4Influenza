@@ -1,5 +1,3 @@
-#  nohup bash ./scripts/Llama/Llama3/ili_south.sh > ./Output/SouthChinaILI/Llama3_relu.log 2>&1 &
-
 export CUDA_VISIBLE_DEVICES=0
 
 percent=100
@@ -8,11 +6,9 @@ model=Llama3
 train_epoch=32
 pred_len=13
 
-# for seq_len in 104 52
 for seq_len in 52
 do
 for fix_seed in 2021 2024 42
-# for fix_seed in 42
 do
 for if_inverse in 0 1
 do

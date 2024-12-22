@@ -9,3 +9,7 @@ node_modules/
 __pycache__/
 Visual/
 PretrainModel/
+Output/
+Weekly/
+FLUw_pre.sh
+positive_rate.sh

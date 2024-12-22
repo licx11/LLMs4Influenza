@@ -1,24 +1,17 @@
-#  nohup bash ./scripts/Llama/flucdc_north.sh > ./Output/NorthChinaFlu/Llama2_relu_lr4_no_fc_no_freeze.log 2>&1 &
-
-#  nohup bash ./scripts/Llama/flucdc_north.sh > ./Output/NorthChinaFlu/Llama2_test.log 2>&1 &
-
 export CUDA_VISIBLE_DEVICES=0
 
 percent=100
 llama_layer=32
 model=Llama2
 train_epoch=64
-# pred_len=13
 seq_len=52
 
 for pred_len in 13
 do
 echo "pred_len: $pred_len"
 for fix_seed in 2021 2024 42
-# for fix_seed in 2021
 do
 for if_inverse in 0 1
-# for if_inverse in 1
 do
 
 python main.py \
