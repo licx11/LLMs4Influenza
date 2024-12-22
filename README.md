@@ -18,7 +18,7 @@ bash ./scripts/flucdc_north.sh
 
 ## Citation
 
-If you find this repo useful, please cite our paper. 
+If you find this repository useful, please consider citing our paper.
 
 ```
 
