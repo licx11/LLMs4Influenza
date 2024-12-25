@@ -481,7 +481,6 @@ def test(model, test_data, test_loader, args, device, itr):
         if args.if_inverse==1 or args.if_inverse==3:
             preds[j,:,0] = inverse_diff2(preds[j,:,0], start=start, end=end, _diff1=diff1, _df=df).values.reshape(-1)
             trues[j,:,0] = inverse_diff2(trues[j,:,0], start=start, end=end, _diff1=diff1, _df=df).values.reshape(-1)
-            ## start到end索引时包括end
             X[j,:,0] = inverse_diff2(X[j,:,0], start=dt[0], end=dt[-args.pred_len-1], _diff1=diff1, _df=df).values.reshape(-1)
         ## CQCDC
         elif args.if_inverse==2:
@@ -498,8 +497,8 @@ def test(model, test_data, test_loader, args, device, itr):
             folder_path = f"/data_disk/lichx/NeurIPS2023-One-Fits-All/Long-term_Forecasting/Visual_relu_new/{args.data_path.split('.')[0]}/{args.model}/"
             dt2 = [f"{year}-{month}-{day}" for year, month, day in Date[j, :, :].astype(int)] # 112, 3 -> 112, 1
             dt2 = pd.to_datetime(dt2)
-            GT = np.concatenate((X[j, :, 0], trues[j, :, 0]), axis=0).reshape(-1,1) ## ground truth 第i个样本的第一个特征
-            PD = np.concatenate((X[j, :, 0], preds[j, :, 0]), axis=0).reshape(-1,1) ## predicted 第i个样本的第一个特征
+            GT = np.concatenate((X[j, :, 0], trues[j, :, 0]), axis=0).reshape(-1,1) 
+            PD = np.concatenate((X[j, :, 0], preds[j, :, 0]), axis=0).reshape(-1,1) 
 
             # visual(dt2, GT, PD, name=os.path.join(folder_path, 'if_inverse-'+f'{args.if_inverse}_' + 'last_13' + '.pdf'), model=args.model)
             if args.pred_len > 1:
