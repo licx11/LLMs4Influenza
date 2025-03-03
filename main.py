@@ -29,7 +29,7 @@ import random
 
 warnings.filterwarnings('ignore')
 
-parser = argparse.ArgumentParser(description='GPT4TS')
+parser = argparse.ArgumentParser()
 
 parser.add_argument('--fix_seed', type=int, default=2021)
 parser.add_argument('--model_id', type=str, required=True, default='test')
@@ -240,11 +240,11 @@ for ii in range(args.itr):
         print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f}".format(
             epoch + 1, train_steps, train_loss, vali_loss))
         
-        if args.cos:
-            scheduler.step()
-            print("lr = {:.10f}".format(model_optim.param_groups[0]['lr']))
-        else:
-            adjust_learning_rate(model_optim, epoch + 1, args)
+    #     if args.cos:
+    #         scheduler.step()
+    #         print("lr = {:.10f}".format(model_optim.param_groups[0]['lr']))
+    #     else:
+    #         adjust_learning_rate(model_optim, epoch + 1, args)
         
         # earlystopping
         # early_stopping(vali_loss, model, path)

@@ -1,28 +1,15 @@
 # LLM
 
-Name
-
-## Influenza Forecasting
+Fine-tuned large language models enhances influenza forecasting
 
 ## Get Start
 
 - Install Python>=3.8, PyTorch 1.8.1.
 - Download the data from (https://www.nature.com/articles/s41467-021-23440-1).
-- We use a single Tesla T4  GPU.
+- We use a single Tesla T4 GPU.
 - We only provide the scripts related to the open-source dataset, which are located in the ./scripts folder. 
-- To train the model and reproduce the experiment results, you can run the following command:
 
-```bash
-bash ./scripts/flucdc_north.sh
-```
 
-## Citation
-
-If you find this repository useful, please consider citing our paper.
-
-```
-
-```
 
 ## Acknowledgement
 

@@ -278,7 +278,7 @@ def vali(model, vali_data, vali_loader, criterion, args, device, itr):
         model.eval()
     else:
         model.in_layer.eval()
-        model.out_layer.eval() ## 每次改名
+        model.out_layer.eval() ##
     with torch.no_grad():
         # for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in tqdm(enumerate(vali_loader)):
         for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(vali_loader):
@@ -446,10 +446,6 @@ def test(model, test_data, test_loader, args, device, itr):
 
             pred = outputs.detach().cpu().numpy()
             true = batch_y.detach().cpu().numpy()
-
-            # x = test_data.inverse_transform(x)
-            # pred = test_data.inverse_transform(pred)
-            # true = test_data.inverse_transform(true)
             
             preds.append(pred)
             trues.append(true)
@@ -464,11 +460,6 @@ def test(model, test_data, test_loader, args, device, itr):
     trues = np.concatenate(trues, axis=0)
     X = np.concatenate(X, axis=0)
     Date = np.concatenate(Date, axis=0)
-    
-    # preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
-    # trues = trues.reshape(-1, trues.shape[-2], trues.shape[-1])
-    # X = X.reshape(-1, X.shape[-2], X.shape[-1])
-    # Date = Date.reshape(-1, Date.shape[-2], Date.shape[-1])
 
     corr_sperman, corr_pearson = [], []
     p_spearman, p_pearson = [], []
@@ -491,9 +482,7 @@ def test(model, test_data, test_loader, args, device, itr):
         if (args.if_inverse == 1 and end == '2020-3-23') or \
             (args.if_inverse == 2 and end == '2020-1-7') or \
             (args.if_inverse == 3 and end == '2020-1-6'):
-            print('Last 13 week')
-            print('seq_len: ', args.seq_len, '\tif_inverse: ', args.if_inverse)
-            print('pred: ', preds[j,:,:].reshape(-1))
+
             folder_path = f"/data_disk/lichx/NeurIPS2023-One-Fits-All/Long-term_Forecasting/Visual_relu_new/{args.data_path.split('.')[0]}/{args.model}/"
             dt2 = [f"{year}-{month}-{day}" for year, month, day in Date[j, :, :].astype(int)] # 112, 3 -> 112, 1
             dt2 = pd.to_datetime(dt2)
@@ -507,9 +496,9 @@ def test(model, test_data, test_loader, args, device, itr):
             else:
                 cor1, cor2 = np.nan, np.nan
             mae, mse, rmse, mape, mspe, smape, nd = metric(preds[j,:,:], trues[j,:,:])
-            print('spearmanR:{:.5f}\tpearsonR:{:.5f}'.format(cor1, cor2))
-            print('MAE:{:.5f} \t MSE:{:.5f}'.format(mae, mse))
-            print('MAPE:{:.5f} \t SMAPE:{:.5f}\n'.format(mape, smape))
+            # print('spearmanR:{:.5f}\tpearsonR:{:.5f}'.format(cor1, cor2))
+            # print('MAE:{:.5f} \t MSE:{:.5f}'.format(mae, mse))
+            # print('MAPE:{:.5f} \t SMAPE:{:.5f}\n'.format(mape, smape))
 
         if args.pred_len > 1:
             corr_s, _ = stats.spearmanr(preds[j, :, :].reshape(-1), trues[j, :, :].reshape(-1))
